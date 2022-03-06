@@ -13,7 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        //Id, SID, status, created_at, updated_at, access_at
+        Schema::create('messages', function (Blueprint $table) {
+            $table->id();
+            $table->string('sid');
+            $table->string('status')->unique();
+            $table->timestamp('accessed_at')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('messages');
     }
 };
