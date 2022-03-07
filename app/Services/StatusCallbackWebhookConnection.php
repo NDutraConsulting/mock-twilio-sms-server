@@ -15,9 +15,7 @@ class StatusCallbackWebhookConnection
   public function post($payload)
   {
 
-    $res = Http::asForm()->post($this->targetEndpoint, [
-        'form_params' => $payload
-    ]);
+    $res = Http::asForm()->post($this->targetEndpoint, $payload);
     \Log::info($res);
   }
 
