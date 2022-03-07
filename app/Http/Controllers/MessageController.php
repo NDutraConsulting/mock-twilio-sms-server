@@ -25,7 +25,7 @@ class MessageController extends Controller
 
       $request = $request->all();
       Log::info(__METHOD__, ['REQUEST'=>$request]);
-      $sid = md5($request['to'].hrtime(true).'-'.hrtime(true));
+      $sid = "mt-"md5($request['to'].hrtime(true).'-'.hrtime(true));
       $message = Message::create([
                         "sid" => $sid,
                         "phone" => $request['to'],
