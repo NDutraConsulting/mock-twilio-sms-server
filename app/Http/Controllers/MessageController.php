@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Message;
+use App\Events\MockMessageStatusReady;
 
 class MessageController extends Controller
 {
@@ -28,6 +29,7 @@ class MessageController extends Controller
                       ]);
 
       // Trigger Web Hook Event
+      MockMessageStatusReady::dispatch($message);
 
     }
 
