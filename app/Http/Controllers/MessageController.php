@@ -35,15 +35,13 @@ class MessageController extends Controller
       // Trigger Web Hook Event
       MockMessageStatusReady::dispatch($request, $message->toArray());
 
-      return response()->json([ 'status' => 'success',
-                                'data' => [
-                                  'sid' => $sid,
-                                  'status' => 'accepted',
-                                  'dateCreated' => [
-                                    'date' => Carbon::now()->format('Y-m-d H:i:s'),
-                                    'timezone' => "+00:00",
-                                    'timezone_type' => 1
-                                  ]
+      return response()->json([
+                                'sid' => $sid,
+                                'status' => 'accepted',
+                                'dateCreated' => [
+                                  'date' => Carbon::now()->format('Y-m-d H:i:s'),
+                                  'timezone' => "+00:00",
+                                  'timezone_type' => 1
                                 ]
                               ]);
     }
