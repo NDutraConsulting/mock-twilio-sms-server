@@ -16,8 +16,9 @@ return new class extends Migration
         //Id, SID, status, created_at, updated_at, access_at
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('sid');
-            $table->string('status')->unique();
+            $table->string('sid')->unique();
+            $table->string('phone')->nullable();
+            $table->string('status');
             $table->timestamp('accessed_at')->nullable();
             $table->timestamps();
         });

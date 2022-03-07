@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Message;
 
 class MessageController extends Controller
 {
@@ -15,16 +16,27 @@ class MessageController extends Controller
           "to" => "+12005550100",
           "body" => "N/A",
           "qa-server" => "05",
+          "api-key" => 'xyz'
         }
       */
-      // Message::create();
+      $request = $request->all();
+      $sid = md5($request['to'].hrtime(true)).'-'.hrtime(true);
+      $message = Message::create([
+                        "sid" => $sid,
+                        "phone" => $request['to'],
+                        "status" => Message::getStatus($request['to'])
+                      ]);
 
-      echo "SENDING SMS";
+      // Trigger Web Hook Event
+
     }
 
-    public function getMessageBySID()
+    public function getMessageBySID(Request $request)
     {
         // TODO
     }
+
+
+
 
 }
