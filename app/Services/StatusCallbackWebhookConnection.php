@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Http;
 class StatusCallbackWebhookConnection
 {
 
-  private $qaServer, $apiKey;
   public function __construct($webhookUrl)
   {
     $this->targetEndpoint = $webhookUrl;

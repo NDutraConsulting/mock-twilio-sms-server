@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Events\MockMessageStatusReady;
 use Carbon\Carbon;
+use Log;
 
 class MessageController extends Controller
 {
@@ -20,7 +21,10 @@ class MessageController extends Controller
           "webhookUrl" => "http://example.com?target=qa-05&api_key=xyz"
         }
       */
+
+
       $request = $request->all();
+      Log::info(__METHOD__, ['REQUEST'=>$request]);
       $sid = md5($request['to'].hrtime(true)).'-'.hrtime(true);
       $message = Message::create([
                         "sid" => $sid,
