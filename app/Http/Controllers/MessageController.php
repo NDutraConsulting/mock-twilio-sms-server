@@ -22,14 +22,14 @@ class MessageController extends Controller
       */
       $request = $request->all();
       $sid = md5($request['to'].hrtime(true)).'-'.hrtime(true);
-      $message = Message::create([
+      Message::create([
                         "sid" => $sid,
                         "phone" => $request['to'],
                         "status" => Message::getStatus($request['to'])
                       ]);
 
       // Trigger Web Hook Event
-      MockMessageStatusReady::dispatch($message);
+      MockMessageStatusReady::dispatch($request);
 
     }
 
