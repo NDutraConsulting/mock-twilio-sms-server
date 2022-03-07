@@ -30,11 +30,18 @@ class MessageController extends Controller
       // Trigger Web Hook Event
       MockMessageStatusReady::dispatch($request, $message->toArray());
 
+      return response()->json([
+                                  'sid' => $sid,
+                                  'status_code' => 'success',
+                              ]);
     }
 
     public function getMessageBySID(Request $request, $sid)
     {
-        echo Message::select('status')->where('sid', $sid)->first();
+        $messageStatus =  Message::select('status')->where('sid', $sid)->first();
+        return response()->json([
+                                    'status' => $messageStatus['status'],
+                                ]);
     }
 
 
