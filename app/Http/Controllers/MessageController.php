@@ -36,7 +36,7 @@ class MessageController extends Controller
                                   'sid' => $sid,
                                   'status' => 'accepted',
                                   'dateCreated' => [
-                                    'date' => Carbon::now(),
+                                    'date' => Carbon::now()->format('Y-m-d H:i:s'),
                                     'timezone' => "+00:00",
                                     'timezone_type' => 1
                                   ]
