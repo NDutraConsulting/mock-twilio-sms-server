@@ -21,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/sms/send', [MessageController::class, 'sendSms']);
+
+Route::get('/sms/message/{sid}', [MessageController::class, 'getMessageBySID'])

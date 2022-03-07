@@ -14,14 +14,15 @@ class MockMessageStatusReady
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $message;
+    public $request, $message;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct($request, $message)
     {
+        $this->request = $request;
         $this->message = $message;
     }
 

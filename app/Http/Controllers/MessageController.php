@@ -16,26 +16,25 @@ class MessageController extends Controller
           "from" => "+12005550000",
           "to" => "+12005550100",
           "body" => "N/A",
-          "qa-server" => "05",
-          "api-key" => 'xyz'
+          "webhookUrl" => "http://example.com?target=qa-05&api_key=xyz"
         }
       */
       $request = $request->all();
       $sid = md5($request['to'].hrtime(true)).'-'.hrtime(true);
-      Message::create([
+      $message = Message::create([
                         "sid" => $sid,
                         "phone" => $request['to'],
                         "status" => Message::getStatus($request['to'])
                       ]);
 
       // Trigger Web Hook Event
-      MockMessageStatusReady::dispatch($request);
+      MockMessageStatusReady::dispatch($request, $message->toArray());
 
     }
 
     public function getMessageBySID(Request $request)
     {
-        // TODO
+      
     }
 
 
