@@ -38,6 +38,7 @@ class Message extends Model
                       '+12005550100' => 'queued',
                       '+12005550102' => 'processing',
                       '+12005550308' => 'sent',
+                      '+12005550404' => 'not_available'
                     ];
 
       if (array_key_exists($phone, $statusMap)) {
