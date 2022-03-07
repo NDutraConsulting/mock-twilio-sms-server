@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Events\MockMessageStatusReady;
+use Carbon\Carbon;
 
 class MessageController extends Controller
 {
@@ -30,9 +31,16 @@ class MessageController extends Controller
       // Trigger Web Hook Event
       MockMessageStatusReady::dispatch($request, $message->toArray());
 
-      return response()->json([
+      return response()->json([ 'status' => 'success',
+                                'data' => [
                                   'sid' => $sid,
-                                  'status_code' => 'success',
+                                  'status' => 'accepted',
+                                  'dateCreated' => [
+                                    'date' => Carbon::now(),
+                                    'timezone' => "+00:00",
+                                    'timezone_type' => 1
+                                  ]
+                                ]
                               ]);
     }
 
