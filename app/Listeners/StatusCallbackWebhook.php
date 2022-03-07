@@ -37,9 +37,14 @@ class StatusCallbackWebhook implements ShouldQueue
                     'MessageStatus'=> $event->message['status'],
                     'To'=> $event->message['phone'],
                     'MessageSid'=> $event->message['sid'],
+                    'MessageServiceSid'=> 'MSxxxxxxx',
                     'AccountSid'=> 'ACxxxxxxx',
                     'From'=> 'TwilioMock',
-                    'ApiVersion'=> '2010-04-01'
+                    'ApiVersion'=> '2010-04-01',
+                    'Body' => 'Mock Twilio',
+                    'ToCountry' => 'US',
+                    'ToState' => 'CA',
+                    'FromZip' => '92122',
                     ];
 
         $connection->post($payload);
