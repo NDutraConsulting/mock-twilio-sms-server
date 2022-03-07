@@ -32,9 +32,9 @@ class MessageController extends Controller
 
     }
 
-    public function getMessageBySID(Request $request)
+    public function getMessageBySID(Request $request, $sid)
     {
-      
+        echo Message::select('status')->where('sid', $sid)->first();
     }
 
 
