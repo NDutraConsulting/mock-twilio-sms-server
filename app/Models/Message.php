@@ -34,7 +34,7 @@ class Message extends Model
       $statusMap = [
                       '+12005550200' => 'delivered',
                       '+12005550500' => 'failed',
-                      '+12005550503' => 'undeliverable',
+                      '+12005550503' => 'undelivered',
                       '+12005550100' => 'queued',
                       '+12005550102' => 'processing',
                       '+12005550308' => 'sent',
