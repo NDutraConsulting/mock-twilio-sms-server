@@ -22,7 +22,6 @@ class MessageController extends Controller
         }
       */
 
-
       $request = $request->all();
       Log::info(__METHOD__, ['REQUEST'=>$request]);
       $sid = "mt-".md5($request['to'].hrtime(true).'-'.hrtime(true));
@@ -32,7 +31,18 @@ class MessageController extends Controller
                         "status" => Message::getStatus($request['to'])
                       ]);
 
+
       // Trigger Web Hook Event
+      // Mock Queued status
+      $messagePayload = $message->toArray();
+      $messagePayload['status'] = Message::getQueuedStatus();
+      MockMessageStatusReady::dispatch($request, $messagePayload);
+
+      // Mock Sent Status
+      $messagePayload['status'] = Message::getSentStatus();
+      MockMessageStatusReady::dispatch($request, $messagePayload);
+
+      // Mock final status
       MockMessageStatusReady::dispatch($request, $message->toArray());
 
       return response()->json([

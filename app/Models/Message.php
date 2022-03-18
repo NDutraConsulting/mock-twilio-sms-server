@@ -35,9 +35,9 @@ class Message extends Model
                       '+12005550200' => 'delivered',
                       '+12005550500' => 'failed',
                       '+12005550503' => 'undelivered',
-                      '+12005550100' => 'queued',
+                      '+12005550100' => self::getQueuedStatus(),
                       '+12005550102' => 'sending',
-                      '+12005550308' => 'sent',
+                      '+12005550308' => self::getSentStatus(),
                       '+12005550404' => 'not_available',
                       '+12005550504' => '30001', // Queue Overflow
                       '+12005550505' => '30002' // Account Suspended
@@ -50,4 +50,15 @@ class Message extends Model
       }
 
     }
+
+    public static function getQueuedStatus()
+    {
+      return 'queued';
+    }
+
+    public static function getSentStatus()
+    {
+      return 'sent';
+    }
+
 }
